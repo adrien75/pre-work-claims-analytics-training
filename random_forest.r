@@ -20,7 +20,8 @@ createFeatures <- function(data) {
                 "Fare",
                 "Embarked")
   fea <- data[,features]
-  fea$Age[is.na(fea$Age)] <- -1
+  #Random Forest doesn't handle missing values.
+  fea$Age[is.na(fea$Age)] <- -1  
   fea$Fare[is.na(fea$Fare)] <- median(fea$Fare, na.rm=TRUE)
   fea$Embarked[fea$Embarked==""] = "S"
   fea$Sex      <- as.factor(fea$Sex)
